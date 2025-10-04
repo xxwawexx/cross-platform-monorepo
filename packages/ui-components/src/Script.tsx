@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import NextScript, { ScriptProps as NextScriptProps } from 'next/script';
+import NextScript, { type ScriptProps as NextScriptProps } from 'next/script';
 
 type ScriptProps = NextScriptProps | React.ComponentPropsWithoutRef<'script'>;
 

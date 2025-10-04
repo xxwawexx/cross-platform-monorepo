@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import NextImage, { ImageProps as NextImageProps } from 'next/image';
+import NextImage, { type ImageProps as NextImageProps } from 'next/image';
 
 type ImageProps = NextImageProps | React.ComponentPropsWithoutRef<'img'>;
 
@@ -14,7 +14,6 @@ export const Image = (props: ImageProps) => {
   
   if (!hasMounted) {
     const { width, height, style, className } = props;
-    
     return <div style={{ width, height, ...style }} className={className} />;
   }
   

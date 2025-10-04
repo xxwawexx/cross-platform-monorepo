@@ -1,16 +1,17 @@
-import React from 'react';
-import NextLink, { LinkProps as NextLinkProps } from 'next/link';
+"use client";
 
-type LinkProps = React.ComponentPropsWithoutRef<'a'> & {
-  href: string;
-};
+import React from 'react';
+
+import NextLink, { type LinkProps as NextLinkProps } from 'next/link';
+
+type LinkProps = Omit<React.ComponentPropsWithoutRef<'a'>, 'href'> & NextLinkProps;
 
 export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
   ({ href, children, ...rest }, ref) => {
     
-    const isNextLink = href.startsWith('/') || href.startsWith('#');
+    const isInternalLink = typeof href === 'string' && (href.startsWith('/') || href.startsWith('#'));
     
-    if (isNextLink) {
+    if (isInternalLink) {
       return (
         <NextLink href={href} ref={ref} {...rest}>
           {children}
@@ -19,7 +20,13 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
     }
     
     return (
-      <a href={href} ref={ref} {...rest}>
+      <a
+        href={href as string}
+        ref={ref}
+        target={rest.target || "_blank"}
+        rel={rest.rel || "noopener noreferrer"}
+        {...rest}
+      >
         {children}
       </a>
     );
