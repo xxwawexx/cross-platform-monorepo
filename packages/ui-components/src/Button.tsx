@@ -1,32 +1,33 @@
-import React from 'react';
-import { Button as MuiButton, ButtonProps as MuiButtonProps } from '@mui/material';
-import NextLink, { LinkProps as NextLinkProps } from 'next/link';
+"use client";
 
-// --- Type Definitions ---
-interface ButtonCustomProps {
+import React from 'react';
+
+import { Button as MuiButton } from '@mui/material';
+import NextLink from 'next/link';
+import type { ButtonProps as MuiButtonProps } from '@mui/material';
+import type { LinkProps as NextLinkProps } from 'next/link';
+
+interface MedflowButtonCustomProps {
   children?: React.ReactNode;
   nextLinkProps?: Omit<NextLinkProps, 'href' | 'as'>;
 }
 
-type LinkProps = ButtonCustomProps & {
+type LinkProps = MedflowButtonCustomProps & {
   href: string;
-} & Omit<MuiButtonProps<'a'>, keyof ButtonCustomProps>;
+} & Omit<MuiButtonProps<'a'>, keyof MedflowButtonCustomProps>;
 
-type ButtonProps = ButtonCustomProps & {
+type StandardButtonProps = MedflowButtonCustomProps & {
   href?: never;
-} & Omit<MuiButtonProps<'button'>, keyof ButtonCustomProps>;
+} & Omit<MuiButtonProps<'button'>, keyof MedflowButtonCustomProps>;
 
-type ButtonProps = LinkProps | ButtonProps;
+type MedflowButtonProps = LinkProps | StandardButtonProps;
 
-
-// --- The Component Implementation ---
-
-export const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
+export const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, MedflowButtonProps>(
   (props, ref) => {
     if ('href' in props && props.href !== undefined) {
       const { children, nextLinkProps, ...rest } = props;
       const isNextLink = props.href.startsWith('/') || props.href.startsWith('#');
-      
+
       if (isNextLink) {
         return (
           <MuiButton
@@ -39,7 +40,7 @@ export const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, Bu
           </MuiButton>
         );
       }
-      
+
       return (
         <MuiButton component="a" ref={ref as React.ForwardedRef<HTMLAnchorElement>} {...rest}>
           {children}
