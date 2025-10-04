@@ -16,14 +16,8 @@ export class UserService {
         email: true,
         firstName: true,
         lastName: true,
-        role: true,
         createdAt: true,
         updatedAt: true,
-        doctorProfile: {
-          select: {
-            specialization: true,
-          },
-        },
       },
     });
   }
@@ -40,8 +34,6 @@ export class UserService {
       email: data.email,
       firstName: data.firstName,
       lastName: data.lastName,
-      role: data.role,
-      doctorProfile: data.doctorProfile,
       password: hashedPassword,
     };
 
@@ -52,7 +44,6 @@ export class UserService {
         email: true,
         firstName: true,
         lastName: true,
-        role: true,
         createdAt: true,
         updatedAt: true,
       },
