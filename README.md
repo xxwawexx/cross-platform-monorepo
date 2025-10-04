@@ -144,6 +144,23 @@ pnpm install
             pnpm --filter [project-name]-api migrate:dev:sqlite
             ```
 
+        #### Handling Database Drift ⚠️
+
+        If you make manual changes to the database or your migration history gets out of sync, Prisma may detect a "drift" and prevent new migrations. To resolve this in your local development environment, you can reset the database.
+
+        **Warning:** This command will permanently delete all data in your local Docker database and re-apply all migrations.
+
+        ```bash
+        pnpm --filter [project-name]-api migrate reset
+        ```         
+        
+4.  **Build the API (One-Time Setup for Desktop)**
+    -   The Electron desktop application depends on the build artifacts (compiled JavaScript and type definitions) from the NestJS API. Before you can run the desktop app for the first time, you need to build the API at least once.
+        ```bash
+        pnpm --filter [project-name]-api build
+        ```
+    -   *Note: The NestJS development server (`start:dev`) also builds the project, so this step is mainly for the initial setup or if you need to update shared types for the desktop app without running the full API server.*
+
 ### Step 5: Run the Development Servers ⚡
 
 You can run all applications at once or start them individually.
