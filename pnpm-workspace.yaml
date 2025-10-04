@@ -1,0 +1,15 @@
+packages:
+  - apps/*
+  - packages/*
+
+onlyBuiltDependencies:
+  - '@nestjs/core'
+  - '@prisma/client'
+  - '@prisma/engines'
+  - '@tailwindcss/oxide'
+  - electron
+  - electron-winstaller
+  - esbuild
+  - prisma
+  - sharp
+  - unrs-resolver
