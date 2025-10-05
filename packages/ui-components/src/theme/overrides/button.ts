@@ -29,7 +29,6 @@ const button: Theme['components'] = {
     }
   },
   MuiButton: {
-    // 👇 The `variants` array was moved from inside 'root' to here
     variants: [
       {
         props: { variant: 'text', color: 'primary' },
@@ -262,12 +261,10 @@ const button: Theme['components'] = {
     ],
     styleOverrides: {
       root: ({ theme, ownerState }) => ({
-        // General styles applying to all buttons are kept here
         borderRadius: 'var(--mui-shape-customBorderRadius-lg)',
         '&.Mui-disabled': {
           opacity: 0.45
         },
-        // Dynamic padding styles based on size and variant
         ...(ownerState.variant === 'text'
           ? {
               ...(ownerState.size === 'small' && {

@@ -2,7 +2,7 @@
 import { createTheme, type Theme } from '@mui/material/styles'
 
 // Type Imports
-import type { SystemMode } from '../types' // Adjusted path to be relative
+import type { SystemMode } from '../types'
 
 // Config Imports
 import themeConfig from '../themeConfig'
