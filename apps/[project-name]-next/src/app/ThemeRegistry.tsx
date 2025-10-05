@@ -1,16 +1,22 @@
 'use client';
+
 import * as React from 'react';
 import createCache from '@emotion/cache';
 import { useServerInsertedHTML } from 'next/navigation';
 import { CacheProvider as EmotionCacheProvider } from '@emotion/react';
-import { ThemeProvider as MuiThemeProvider, createTheme } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
 
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-  },
+import { ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { theme } from 'ui-components';
+
+import { Inter } from 'next/font/google';
+
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700', '800', '900']
 });
+
+const nextTheme = theme('light', inter.style.fontFamily);
 
 export default function ThemeRegistry(props: { options?: any; children: React.ReactNode }) {
   const { options, children } = props;
@@ -44,7 +50,7 @@ export default function ThemeRegistry(props: { options?: any; children: React.Re
     for (const name of names) {
       html += `<style data-emotion="${cache.key} ${name}">${cache.inserted[name]}</style>`;
     }
-    
+
     return (
       <React.Fragment>
         <style
@@ -60,10 +66,10 @@ export default function ThemeRegistry(props: { options?: any; children: React.Re
 
   return (
     <EmotionCacheProvider value={cache}>
-      <MuiThemeProvider theme={darkTheme}>
+      <ThemeProvider theme={nextTheme}>
         <CssBaseline />
         {children}
-      </MuiThemeProvider>
+      </ThemeProvider>
     </EmotionCacheProvider>
   );
 }

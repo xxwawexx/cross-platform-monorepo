@@ -8,19 +8,19 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },
   "peerDependencies": {
-    "@emotion/react": "^11.0.0",
-    "@emotion/styled": "^11.0.0",
-    "@mui/material": ">=5.0.0",
-    "next": ">=14.0.0",
-    "react": ">=18.0.0",
-    "react-dom": ">=18.0.0"
-  },
-  "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
-    "@mui/material": "^7.3.4"
+    "@mui/lab": "7.0.1-beta.18",
+    "@mui/material": "^7.3.4",
+    "next": ">=14.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/lab": "7.0.1-beta.18",
+    "@mui/material": "^7.3.4",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
     "next": "15.5.4",
